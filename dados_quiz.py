@@ -1,116 +1,117 @@
 # -*- coding: utf-8 -*-
-"""15 questões autorais de Enfermagem no estilo do concurso EBSERH."""
+"""15 questões autorais de Direito Penal para concurso público."""
 
 CAPA_SEGUNDOS = 2
 
 QUIZZES = {
-    'SUS — princípios e acesso': [{
-        'pergunta': 'No SUS, qual princípio garante que todas as pessoas tenham acesso às ações e aos serviços de saúde, em todos os níveis de atenção?',
-        'alternativas': ['Equidade', 'Universalidade', 'Regionalização'],
-        'correta': 1,
-        'explicacao': 'A universalidade assegura o acesso de todas as pessoas às ações e aos serviços de saúde. Equidade significa considerar necessidades diferentes para reduzir desigualdades; regionalização organiza os serviços por territórios.',
-        'fonte': 'Lei nº 8.080/1990, art. 7º'
-    }],
-    'SUS — controle social': [{
-        'pergunta': 'De acordo com a Lei nº 8.142/1990, como se caracteriza o Conselho de Saúde?',
-        'alternativas': ['Órgão temporário e apenas consultivo', 'Órgão permanente e deliberativo', 'Reunião que ocorre somente a cada quatro anos'],
-        'correta': 1,
-        'explicacao': 'A Lei nº 8.142/1990 define o Conselho de Saúde como permanente e deliberativo. A Conferência de Saúde, por sua vez, reúne-se a cada quatro anos para avaliar a situação de saúde e propor diretrizes.',
-        'fonte': 'Lei nº 8.142/1990, art. 1º, § 2º'
-    }],
-    'Processo de Enfermagem — etapas': [{
-        'pergunta': 'Conforme a Resolução Cofen nº 736/2024, qual sequência apresenta as cinco etapas do Processo de Enfermagem?',
-        'alternativas': ['Coleta, prescrição médica, execução, alta e auditoria', 'Avaliação, diagnóstico, planejamento, implementação e evolução', 'Triagem, hipótese clínica, tratamento, encaminhamento e alta'],
-        'correta': 1,
-        'explicacao': 'A resolução organiza o Processo de Enfermagem em avaliação, diagnóstico, planejamento, implementação e evolução. As etapas são inter-relacionadas, interdependentes, recorrentes e cíclicas.',
-        'fonte': 'Resolução Cofen nº 736/2024'
-    }],
-    'Processo de Enfermagem — atribuições': [{
-        'pergunta': 'Segundo a Resolução Cofen nº 736/2024, quais atividades do Processo de Enfermagem são privativas do enfermeiro?',
-        'alternativas': ['Anotação e checagem dos cuidados executados', 'Diagnóstico e prescrição de Enfermagem', 'Aferição de sinais vitais e coleta de dados'],
-        'correta': 1,
-        'explicacao': 'A resolução estabelece que o diagnóstico e a prescrição de Enfermagem cabem privativamente ao enfermeiro. Técnicos e auxiliares participam da implementação e fazem anotações e checagens sob supervisão e orientação do enfermeiro.',
-        'fonte': 'Resolução Cofen nº 736/2024'
-    }],
-    'Segurança do paciente — identificação': [{
-        'pergunta': 'Antes de administrar um medicamento, qual conduta contribui para confirmar corretamente a identidade do paciente?',
-        'alternativas': ['Conferir somente o número do leito', 'Usar pelo menos dois identificadores e compará-los com a prescrição', 'Perguntar o nome apenas ao acompanhante, sem conferir a pulseira'],
-        'correta': 1,
-        'explicacao': 'A identificação deve usar pelo menos dois identificadores confiáveis, conferidos antes do cuidado com os registros ou a prescrição. O número do leito não é identificador seguro, pois pode mudar.',
-        'fonte': 'Protocolo de Identificação do Paciente — MS/Anvisa'
-    }],
-    'Prevenção de infecções — higiene das mãos': [{
-        'pergunta': 'Em qual momento a higiene das mãos é indicada segundo os cinco momentos da assistência?',
-        'alternativas': ['Antes de procedimento limpo ou asséptico', 'Somente ao final do plantão', 'Apenas quando as mãos estiverem visivelmente sujas'],
+    'Princípio da legalidade': [{
+        'pergunta': 'De acordo com o Código Penal, quando uma conduta pode ser considerada crime e receber uma pena?',
+        'alternativas': ['Quando houver lei anterior que a defina e pena previamente prevista em lei', 'Quando a autoridade considerar a conduta prejudicial', 'Quando houver apenas costume social sobre a punição'],
         'correta': 0,
-        'explicacao': 'A higiene das mãos deve ser realizada antes de procedimento limpo ou asséptico, além de outros momentos da assistência, como antes do contato com o paciente e após risco de exposição a fluidos.',
-        'fonte': 'Protocolo de Higiene das Mãos — MS/Anvisa'
+        'explicacao': 'O princípio da legalidade exige lei anterior que defina o crime e lei anterior que estabeleça a pena. A regra impede a criação de crimes ou penas por decisão da autoridade ou por costume.',
+        'fonte': 'Código Penal, art. 1º'
     }],
-    'Biossegurança — precaução-padrão': [{
-        'pergunta': 'A quem se aplicam as precauções-padrão nos serviços de saúde?',
-        'alternativas': ['Somente a pacientes com infecção confirmada', 'A todos os pacientes, independentemente do diagnóstico', 'Somente a pacientes internados em isolamento'],
-        'correta': 1,
-        'explicacao': 'As precauções-padrão são aplicadas no cuidado de todos os pacientes, independentemente de diagnóstico conhecido. Incluem higiene das mãos e uso de equipamentos de proteção conforme o risco de exposição.',
-        'fonte': 'Protocolo de Precauções e Isolamento — Anvisa'
-    }],
-    'Tuberculose — proteção respiratória': [{
-        'pergunta': 'Na assistência a paciente com suspeita de tuberculose pulmonar transmissível, qual medida de proteção respiratória é adequada?',
-        'alternativas': ['Profissional usa PFF2 ou N95; paciente usa máscara cirúrgica durante transporte', 'Profissional usa somente luvas; paciente permanece sem máscara', 'Profissional usa máscara de tecido; paciente usa PFF2 durante transporte'],
+    'Crime doloso': [{
+        'pergunta': 'Para o Código Penal, age dolosamente quem:',
+        'alternativas': ['Quer o resultado ou assume o risco de produzi-lo', 'Produz o resultado por imprudência, negligência ou imperícia', 'Não prevê um resultado que era impossível prever'],
         'correta': 0,
-        'explicacao': 'Na precaução para aerossóis, o profissional utiliza respirador PFF2 ou N95 ao entrar no ambiente indicado. Quando o transporte for necessário, o paciente deve usar máscara cirúrgica.',
-        'fonte': 'Protocolo de Enfermagem para Tuberculose — Ministério da Saúde'
+        'explicacao': 'O dolo ocorre quando a pessoa quis o resultado ou assumiu o risco de produzi-lo. O Código Penal distingue essa hipótese do crime culposo, ligado à imprudência, negligência ou imperícia.',
+        'fonte': 'Código Penal, art. 18, inciso I'
     }],
-    'Centro cirúrgico — cirurgia segura': [{
-        'pergunta': 'Na lista de verificação de cirurgia segura, em que momento a equipe confirma verbalmente paciente, procedimento e local da cirurgia antes da incisão?',
-        'alternativas': ['Durante a confirmação antes da incisão', 'Somente depois que o paciente deixa a sala', 'Apenas na admissão hospitalar'],
+    'Crime culposo': [{
+        'pergunta': 'Qual conjunto de modalidades caracteriza o crime culposo no Código Penal?',
+        'alternativas': ['Imprudência, negligência ou imperícia', 'Intenção, motivo ou finalidade', 'Coação, ameaça ou fraude'],
         'correta': 0,
-        'explicacao': 'A confirmação verbal da identidade do paciente, do procedimento e do local cirúrgico ocorre antes da incisão. A lista também inclui verificações antes da indução anestésica e antes da saída da sala.',
-        'fonte': 'Protocolo para Cirurgia Segura — MS/Anvisa'
+        'explicacao': 'O crime é culposo quando o resultado decorre de imprudência, negligência ou imperícia. Em regra, só há punição por culpa quando a lei prevê expressamente essa modalidade.',
+        'fonte': 'Código Penal, art. 18, inciso II e parágrafo único'
     }],
-    'Hemoterapia — reação transfusional': [{
-        'pergunta': 'Durante uma transfusão, o paciente apresenta sinais que levantam suspeita de reação transfusional. Qual é a primeira conduta?',
-        'alternativas': ['Diminuir a velocidade e aguardar melhora', 'Interromper imediatamente a transfusão e comunicar a equipe responsável', 'Descartar a bolsa e reiniciar a transfusão em outro acesso'],
-        'correta': 1,
-        'explicacao': 'Na suspeita de reação, a transfusão deve ser interrompida imediatamente. A equipe deve manter o acesso venoso, avaliar o paciente, conferir as identificações e comunicar o médico e o serviço de hemoterapia.',
-        'fonte': 'Manual Técnico de Hemovigilância — Anvisa'
-    }],
-    'Imunização — rede de frio': [{
-        'pergunta': 'Na rotina de conservação de vacinas refrigeradas na sala de vacinação, qual faixa de temperatura deve ser mantida no equipamento?',
-        'alternativas': ['De +2 °C a +8 °C', 'De −10 °C a −2 °C', 'De +10 °C a +18 °C'],
+    'Tentativa': [{
+        'pergunta': 'Quando há tentativa de crime, conforme o Código Penal?',
+        'alternativas': ['A execução começa, mas o crime não se consuma por circunstâncias alheias à vontade do agente', 'A pessoa apenas pensa em cometer o crime, sem iniciar a execução', 'O agente consuma o crime e depois se arrepende'],
         'correta': 0,
-        'explicacao': 'Para os imunobiológicos que devem permanecer refrigerados, a faixa de conservação indicada é de +2 °C a +8 °C. A equipe monitora e registra a temperatura conforme as normas da rede de frio.',
-        'fonte': 'Manual da Rede de Frio do PNI — Ministério da Saúde, 2025'
+        'explicacao': 'A tentativa pressupõe início da execução. O crime não se consuma por circunstâncias que não dependem da vontade do agente; atos preparatórios, por si sós, não bastam para caracterizá-la.',
+        'fonte': 'Código Penal, art. 14, inciso II'
     }],
-    'Farmacologia — cálculo de dose': [{
-        'pergunta': 'Foi prescrita uma dose de 750 mg. A apresentação disponível contém 500 mg em 2 mL. Qual volume corresponde à dose prescrita?',
-        'alternativas': ['2 mL', '3 mL', '4 mL'],
-        'correta': 1,
-        'explicacao': 'A concentração é 250 mg por mL, pois 500 mg estão em 2 mL. Para administrar 750 mg, são necessários 750 ÷ 250 = 3 mL.'
-    }],
-    'Segurança do paciente — prevenção de quedas': [{
-        'pergunta': 'Qual ação é adequada para prevenir quedas durante a internação?',
-        'alternativas': ['Aplicar a mesma medida a todos, sem avaliar riscos', 'Avaliar o risco e definir medidas preventivas individualizadas', 'Reavaliar o risco somente após a alta'],
-        'correta': 1,
-        'explicacao': 'A prevenção começa com a avaliação do risco e a escolha de medidas adequadas a cada paciente. O risco deve ser reavaliado quando houver mudança clínica, transferência ou outro fator relevante.',
-        'fonte': 'Protocolo de Prevenção de Quedas — MS/Anvisa'
-    }],
-    'Gerenciamento de resíduos — perfurocortantes': [{
-        'pergunta': 'Após o uso, onde deve ser descartada uma agulha contaminada?',
-        'alternativas': ['Em recipiente rígido, resistente à punctura e identificado para perfurocortantes', 'No lixo comum, depois de recolocar o protetor', 'Em saco branco, misturada a gazes usadas'],
+    'Desistência voluntária e arrependimento eficaz': [{
+        'pergunta': 'O que ocorre quando o agente, voluntariamente, desiste de prosseguir na execução ou impede que o resultado aconteça?',
+        'alternativas': ['Responde somente pelos atos já praticados', 'Responde sempre pelo crime consumado', 'Fica automaticamente isento de qualquer responsabilidade'],
         'correta': 0,
-        'explicacao': 'Agulhas e outros perfurocortantes devem ser descartados no recipiente apropriado, rígido, resistente à punctura e identificado. Não se deve reencapar a agulha nem descartá-la no lixo comum.',
-        'fonte': 'RDC Anvisa nº 222/2018, Grupo E'
+        'explicacao': 'Na desistência voluntária, o agente interrompe a execução; no arrependimento eficaz, impede que o resultado se produza. Em ambos os casos, responde pelos atos que já praticou, se eles constituírem infração penal.',
+        'fonte': 'Código Penal, art. 15'
     }],
-    'Saúde mental — CAPS': [{
-        'pergunta': 'Qual característica corresponde à atuação dos Centros de Atenção Psicossocial, os CAPS?',
-        'alternativas': ['Cuidado psicossocial comunitário e multiprofissional', 'Atendimento exclusivamente hospitalar e de longa permanência', 'Serviço restrito a consultas médicas, sem articulação com a rede'],
+    'Arrependimento posterior': [{
+        'pergunta': 'Em crime cometido sem violência ou grave ameaça à pessoa, qual conduta pode permitir a redução de pena prevista no arrependimento posterior?',
+        'alternativas': ['Reparar o dano ou restituir a coisa até o recebimento da denúncia ou queixa', 'Confessar o crime somente depois do trânsito em julgado', 'Pedir desculpas à vítima depois de iniciada a execução'],
         'correta': 0,
-        'explicacao': 'Os CAPS oferecem cuidado psicossocial comunitário e multiprofissional, articulado à rede de atenção. A proposta prioriza cuidado em liberdade e atenção no território, conforme as necessidades da pessoa.',
-        'fonte': 'Portaria GM/MS nº 336/2002'
+        'explicacao': 'O Código Penal prevê redução de pena quando, em crime sem violência ou grave ameaça, o agente repara o dano ou restitui a coisa por ato voluntário até o recebimento da denúncia ou da queixa.',
+        'fonte': 'Código Penal, art. 16'
+    }],
+    'Erro sobre a ilicitude do fato': [{
+        'pergunta': 'Segundo o Código Penal, qual é o efeito do erro inevitável sobre a ilicitude do fato?',
+        'alternativas': ['Isenta de pena', 'Aumenta a pena', 'Transforma automaticamente o crime doloso em culposo'],
+        'correta': 0,
+        'explicacao': 'O erro inevitável sobre a ilicitude do fato isenta de pena. Se o erro for evitável, a pena pode ser diminuída nos limites previstos no Código Penal.',
+        'fonte': 'Código Penal, art. 21'
+    }],
+    'Estado de necessidade': [{
+        'pergunta': 'Qual situação corresponde ao estado de necessidade previsto no Código Penal?',
+        'alternativas': ['Praticar o fato para salvar direito próprio ou alheio de perigo atual, nas condições legais', 'Reagir a uma agressão passada para se vingar', 'Agir por conveniência, mesmo sem perigo a qualquer direito'],
+        'correta': 0,
+        'explicacao': 'O estado de necessidade exige perigo atual e a proteção de direito próprio ou alheio, observadas as demais condições legais. A reação a perigo passado por vingança não se enquadra nessa justificativa.',
+        'fonte': 'Código Penal, art. 24'
+    }],
+    'Legítima defesa': [{
+        'pergunta': 'Para caracterizar legítima defesa, a pessoa deve usar moderadamente os meios necessários para:',
+        'alternativas': ['Repelir agressão injusta, atual ou iminente, a direito próprio ou de outra pessoa', 'Punir quem praticou uma agressão no passado', 'Evitar qualquer discussão, ainda que não exista agressão'],
+        'correta': 0,
+        'explicacao': 'A legítima defesa é a reação moderada, com os meios necessários, contra agressão injusta atual ou iminente a direito próprio ou alheio. Ela não autoriza vingança após a agressão terminar.',
+        'fonte': 'Código Penal, art. 25'
+    }],
+    'Inimputabilidade por condição mental': [{
+        'pergunta': 'Em que hipótese o Código Penal prevê isenção de pena por inimputabilidade relacionada à saúde mental?',
+        'alternativas': ['Quando, ao tempo da ação ou omissão, a pessoa era inteiramente incapaz de entender o caráter ilícito do fato ou de determinar-se conforme esse entendimento', 'Sempre que a pessoa alegar sofrimento emocional', 'Quando a pessoa desconhecer a identidade da vítima'],
+        'correta': 0,
+        'explicacao': 'O art. 26 trata da incapacidade inteira, ao tempo da ação ou omissão, de entender a ilicitude do fato ou de agir conforme esse entendimento, em razão de doença mental ou desenvolvimento mental incompleto ou retardado. A avaliação depende dos requisitos legais.',
+        'fonte': 'Código Penal, art. 26'
+    }],
+    'Menoridade penal': [{
+        'pergunta': 'Para efeitos penais, como é considerada a pessoa que ainda não completou 18 anos na data do fato?',
+        'alternativas': ['Inimputável, sujeita às normas da legislação especial', 'Imputável pelas mesmas regras aplicáveis a adultos', 'Imputável apenas se o crime for contra o patrimônio'],
+        'correta': 0,
+        'explicacao': 'O Código Penal estabelece que menores de 18 anos são penalmente inimputáveis e ficam sujeitos às normas da legislação especial, atualmente o Estatuto da Criança e do Adolescente.',
+        'fonte': 'Código Penal, art. 27'
+    }],
+    'Concurso de pessoas': [{
+        'pergunta': 'No concurso de pessoas, como regra, quem concorre para o crime responde:',
+        'alternativas': ['Na medida de sua culpabilidade', 'Sempre com pena idêntica à de todos os demais envolvidos', 'Somente se tiver executado pessoalmente o verbo do crime'],
+        'correta': 0,
+        'explicacao': 'Quem concorre para o crime incide nas penas a ele cominadas, na medida de sua culpabilidade. A participação de cada pessoa deve ser avaliada conforme sua contribuição e responsabilidade.',
+        'fonte': 'Código Penal, art. 29'
+    }],
+    'Furto': [{
+        'pergunta': 'Qual conduta corresponde à definição básica de furto no Código Penal?',
+        'alternativas': ['Subtrair, para si ou para outra pessoa, coisa alheia móvel', 'Obter vantagem induzindo alguém em erro por meio fraudulento', 'Subtrair coisa móvel mediante violência ou grave ameaça à pessoa'],
+        'correta': 0,
+        'explicacao': 'O furto consiste em subtrair coisa alheia móvel para si ou para outra pessoa. A violência ou grave ameaça contra a pessoa diferencia a definição básica do roubo.',
+        'fonte': 'Código Penal, art. 155'
+    }],
+    'Roubo': [{
+        'pergunta': 'Qual elemento diferencia a definição básica de roubo da definição básica de furto?',
+        'alternativas': ['Violência ou grave ameaça à pessoa, ou redução da capacidade de resistência', 'A coisa subtraída precisa ser imóvel', 'A vítima precisa ser agente público'],
+        'correta': 0,
+        'explicacao': 'Na definição básica do roubo, a subtração ocorre mediante violência ou grave ameaça à pessoa, ou após a vítima ser reduzida à impossibilidade de resistência. No furto, esses elementos não integram a definição básica.',
+        'fonte': 'Código Penal, arts. 155 e 157'
+    }],
+    'Peculato': [{
+        'pergunta': 'Qual conduta descreve o peculato-apropriação previsto no Código Penal?',
+        'alternativas': ['Apropriar-se de dinheiro, valor ou bem móvel que o funcionário público possui em razão do cargo', 'Subtrair bem móvel sem relação com cargo ou função pública', 'Receber vantagem para influenciar ato de outro funcionário'],
+        'correta': 0,
+        'explicacao': 'No peculato-apropriação, o funcionário público se apropria de dinheiro, valor ou bem móvel, público ou particular, cuja posse decorre do cargo, em proveito próprio ou alheio. O artigo também prevê a modalidade de desvio.',
+        'fonte': 'Código Penal, art. 312'
     }],
 }
 
 LEGENDAS = {
-    tema: f'{tema}: responda à questão e confira a explicação.\n#JuhQuiz #EBSERH #Enfermagem #Concursos'
+    tema: f'{tema}: responda à questão e confira a explicação.\n#JuhQuiz #DireitoPenal #Concursos #ConcursoPublico'
     for tema in QUIZZES
 }
