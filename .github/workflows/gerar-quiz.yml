@@ -15,7 +15,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: juh-quiz-10
+  group: juh-quiz-concurso-1
   cancel-in-progress: false
 jobs:
   gerar:
@@ -72,6 +72,6 @@ jobs:
         if: success()
         run: |
           echo '15 vídeos de questões de Enfermagem em 1080×1920, com legendas enviados e conferidos no Drive.' >> "$GITHUB_STEP_SUMMARY"
-          echo 'Subpasta: saida/Juh-Quiz-10/execucao-${{ github.run_id }}' >> "$GITHUB_STEP_SUMMARY"
-          echo '[Abrir a pasta no Drive](https://drive.google.com/drive/folders/1IeWfSGxVOgY4nwLQwGxzPZMqRCO81i8B)' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Subpasta: saida/Juh-Quiz-Concurso-1/execucao-${{ github.run_id }}' >> "$GITHUB_STEP_SUMMARY"
+          echo '[Abrir a pasta no Drive](https://drive.google.com/drive/folders/1-t0FbuCTOsw_tqGNizlpLrYIwOLn8W6i)' >> "$GITHUB_STEP_SUMMARY"
 
