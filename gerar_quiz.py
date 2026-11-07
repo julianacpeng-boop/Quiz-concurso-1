@@ -174,6 +174,9 @@ def validar():
             raise ValueError(f'Cada vídeo precisa conter uma questão: {tema}')
         if not LEGENDAS.get(tema, '').strip():
             raise ValueError(f'Legenda ausente para {tema}.')
+        quantidade_hashtags = len(re.findall(r'(?<!\w)#\w+', LEGENDAS[tema]))
+        if quantidade_hashtags > 4:
+            raise ValueError(f'A legenda de {tema} tem mais de quatro hashtags.')
         for p in perguntas:
             vistos += 1
             if not p.get('pergunta') or len(p.get('alternativas', [])) != 3:
@@ -315,6 +318,8 @@ def gerar(indice, tema, pergunta, out):
                  '-c', 'copy', '-movflags', '+faststart', video)
 
     tempo = verificar_video(video)
+    # O TXT individual mantém a duração da capa no padrão dos outros quizzes,
+    # seguida da legenda pronta para copiar, com até quatro hashtags.
     texto_legenda = f'CAPA_SEGUNDOS={CAPA_SEGUNDOS}\n{LEGENDAS[tema].strip()}\n'
     video.with_suffix('.txt').write_text(texto_legenda, encoding='utf-8')
     print(f'Vídeo {indice}: uma questão, layout {m + 1}, 1080×1920, {tempo:.1f}s.', flush=True)
