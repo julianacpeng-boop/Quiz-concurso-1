@@ -269,7 +269,7 @@ def verificar_video(path):
 
 
 def enviar_drive(video, lote):
-    destino = f'destino:saida/Juh-Quiz-10/{lote}'
+    destino = f'destino:saida/Juh-Quiz-Concurso-1/{lote}'
     legenda = video.with_suffix('.txt')
     for arquivo in (video, legenda):
         executar('rclone', 'copyto', arquivo, f'{destino}/{arquivo.name}', '--retries', '3')
