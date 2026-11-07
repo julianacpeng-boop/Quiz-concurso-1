@@ -19,7 +19,8 @@ BRANCO = '#FFFFFF'
 TURQUESA = '#46D4D8'
 PRETO = '#111111'
 RAIZ = Path(__file__).resolve().parent
-FONTE = os.getenv('QUIZ_FONT', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')
+FONTE_NEGRITO = os.getenv('QUIZ_FONT_BOLD', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')
+FONTE_REGULAR = os.getenv('QUIZ_FONT_REGULAR', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')
 VOZ = 'pt-BR-AntonioNeural'
 VELOCIDADE_VOZ = '+10%'
 
@@ -40,13 +41,15 @@ def slug(texto):
     return re.sub(r'[^a-zA-Z0-9]+', '-', texto).strip('-').lower()[:75] or 'quiz'
 
 
-def fonte(tamanho):
-    return ImageFont.truetype(FONTE, tamanho)
+def fonte(tamanho, negrito=True):
+    caminho = FONTE_NEGRITO if negrito else FONTE_REGULAR
+    return ImageFont.truetype(caminho, tamanho)
 
 
-def linhas_ajustadas(draw, texto, largura, altura, tamanho_maximo, tamanho_minimo=30, espacamento=1.2):
+def linhas_ajustadas(draw, texto, largura, altura, tamanho_maximo, tamanho_minimo=30,
+                     espacamento=1.2, negrito=True):
     for tamanho in range(tamanho_maximo, tamanho_minimo - 1, -2):
-        f = fonte(tamanho)
+        f = fonte(tamanho, negrito)
         linhas, atual, palavra_grande = [], '', False
         for palavra in texto.split():
             if draw.textlength(palavra, font=f) > largura:
@@ -65,10 +68,11 @@ def linhas_ajustadas(draw, texto, largura, altura, tamanho_maximo, tamanho_minim
     raise ValueError(f'Texto não cabe no espaço do vídeo: {texto[:90]}')
 
 
-def texto_central(draw, texto, caixa, tamanho_maximo=66, cor=PRETO, tamanho_minimo=30, espacamento=1.2):
+def texto_central(draw, texto, caixa, tamanho_maximo=66, cor=PRETO, tamanho_minimo=30,
+                  espacamento=1.2, negrito=True):
     x1, y1, x2, y2 = caixa
     linhas, f, passo = linhas_ajustadas(draw, texto, x2 - x1, y2 - y1,
-                                        tamanho_maximo, tamanho_minimo, espacamento)
+                                        tamanho_maximo, tamanho_minimo, espacamento, negrito)
     y = y1 + ((y2 - y1) - len(linhas) * passo) / 2
     for linha in linhas:
         draw.text(((x1 + x2) / 2, y), linha, anchor='mt', font=f, fill=cor)
@@ -76,19 +80,42 @@ def texto_central(draw, texto, caixa, tamanho_maximo=66, cor=PRETO, tamanho_mini
 
 
 def texto_esquerda(draw, texto, caixa, tamanho_maximo=72, cor=PRETO,
-                   tamanho_minimo=34, espacamento=1.22):
+                   tamanho_minimo=34, espacamento=1.22, negrito=True):
     x1, y1, x2, y2 = caixa
     linhas, f, passo = linhas_ajustadas(draw, texto, x2 - x1, y2 - y1,
-                                        tamanho_maximo, tamanho_minimo, espacamento)
+                                        tamanho_maximo, tamanho_minimo, espacamento, negrito)
     y = y1 + ((y2 - y1) - len(linhas) * passo) / 2
     for linha in linhas:
         draw.text((x1, y), linha, anchor='lt', font=f, fill=cor)
         y += passo
 
 
+def texto_justificado(draw, texto, caixa, tamanho_maximo=72, cor=PRETO,
+                      tamanho_minimo=34, espacamento=1.22, negrito=True):
+    x1, y1, x2, y2 = caixa
+    largura = x2 - x1
+    linhas, f, passo = linhas_ajustadas(draw, texto, largura, y2 - y1,
+                                        tamanho_maximo, tamanho_minimo, espacamento, negrito)
+    y = y1 + ((y2 - y1) - len(linhas) * passo) / 2
+    for indice, linha in enumerate(linhas):
+        palavras = linha.split()
+        # Mantém a última linha alinhada à esquerda, como em texto justificado comum.
+        if indice == len(linhas) - 1 or len(palavras) < 2:
+            draw.text((x1, y), linha, anchor='lt', font=f, fill=cor)
+        else:
+            largura_palavras = sum(draw.textlength(palavra, font=f) for palavra in palavras)
+            espaco = (largura - largura_palavras) / (len(palavras) - 1)
+            x = x1
+            for palavra in palavras:
+                draw.text((x, y), palavra, anchor='lt', font=f, fill=cor)
+                x += draw.textlength(palavra, font=f) + espaco
+        y += passo
+
+
 def fundo(indice):
-    # Amarelo contínuo para reproduzir o fundo da imagem de referência.
-    return Image.new('RGB', (W, H), AMARELO)
+    # Três combinações rotativas, uma por bloco de três vídeos.
+    cores_fundo = (AMARELO, BRANCO, TURQUESA)
+    return Image.new('RGB', (W, H), cores_fundo[modelo(indice)])
 
 
 def desenhar_base(indice, tema, numero, pergunta, estado='pergunta', contagem=None):
@@ -108,38 +135,41 @@ def desenhar_base(indice, tema, numero, pergunta, estado='pergunta', contagem=No
         badge = (margem, 82, W - margem - 195, 225)
         timer = (W - margem - 175, 92, W - margem, 215)
 
-    d.rounded_rectangle(badge, 85, fill=TURQUESA, outline=PRETO, width=5)
+    cores_layout = (
+        (AMARELO, TURQUESA, BRANCO),
+        (BRANCO, AMARELO, TURQUESA),
+        (TURQUESA, BRANCO, AMARELO),
+    )
+    _, cor_destaque, cor_contagem = cores_layout[m]
+
+    d.rounded_rectangle(badge, 85, fill=cor_destaque, outline=PRETO, width=5)
     texto_central(d, tema.upper(), (badge[0] + 20, badge[1] + 8, badge[2] - 20, badge[3] - 8),
                   46, cor=PRETO, tamanho_minimo=26)
-    d.rounded_rectangle(timer, 8 if m == 1 else 26, fill=BRANCO, outline=PRETO, width=4)
     if contagem is not None:
-        timer_texto = f'0:0{contagem}'
-    elif estado == 'resposta':
-        timer_texto = '✓'
-    elif estado == 'comentario':
-        timer_texto = '✓'
-    else:
-        timer_texto = ''
-    texto_central(d, timer_texto, (timer[0] + 2, timer[1] + 3, timer[2] - 2, timer[3] - 3),
-                  72, cor=PRETO, tamanho_minimo=38)
+        d.rounded_rectangle(timer, 8 if m == 1 else 26, fill=cor_contagem, outline=PRETO, width=4)
+        texto_central(d, f'0:0{contagem}', (timer[0] + 2, timer[1] + 3, timer[2] - 2, timer[3] - 3),
+                      72, cor=PRETO, tamanho_minimo=38)
 
     # Área da questão em texto grande, mantendo o fundo amarelo da referência.
-    if estado in ('comentario', 'resposta'):
-        titulo = 'COMENTÁRIO' if estado == 'comentario' else 'GABARITO'
+    if estado == 'comentario':
         d.rounded_rectangle((margem, 300, W - margem, 410), 42,
-                            fill=TURQUESA, outline=PRETO, width=4)
-        texto_central(d, titulo, (margem + 10, 307, W - margem - 10, 403), 49,
+                            fill=cor_destaque, outline=PRETO, width=4)
+        texto_central(d, 'COMENTÁRIO', (margem + 10, 307, W - margem - 10, 403), 49,
                       cor=PRETO, tamanho_minimo=32)
 
     if estado == 'comentario':
-        texto_esquerda(d, pergunta['explicacao'], (margem, 470, W - margem, 1470),
-                       65, cor=PRETO, tamanho_minimo=37, espacamento=1.28)
+        texto_justificado(d, pergunta['explicacao'], (margem, 470, W - margem, 1470),
+                          49, cor=PRETO, tamanho_minimo=34, espacamento=1.38, negrito=False)
         cta = 'Agora conte seu gabarito nos comentários!'
         texto_central(d, cta, (margem, 1570, W - margem, 1715), 43, cor=PRETO, tamanho_minimo=30)
     else:
         q = pergunta['pergunta']
-        texto_esquerda(d, q, (margem, 345, W - margem, 990),
-                       72, cor=PRETO, tamanho_minimo=38, espacamento=1.25)
+        texto_justificado(d, q, (margem, 345, W - margem, 925),
+                          64, cor=PRETO, tamanho_minimo=36, espacamento=1.25)
+        referencia = pergunta.get('fonte', '').strip()
+        if referencia:
+            texto_esquerda(d, f'({referencia})', (margem, 930, W - margem, 1015),
+                           25, cor=PRETO, tamanho_minimo=20, espacamento=1.12, negrito=False)
 
         for i, alternativa in enumerate(pergunta['alternativas']):
             y1 = 1055 + i * 195
@@ -148,9 +178,9 @@ def desenhar_base(indice, tema, numero, pergunta, estado='pergunta', contagem=No
             linha = f'({marca}) {"ABC"[i]}. {alternativa}'
             if correta:
                 d.rounded_rectangle((margem - 12, y1 - 10, W - margem + 12, y1 + 148),
-                                    22, outline=TURQUESA, width=8)
+                                    22, outline=cor_destaque, width=8)
             texto_esquerda(d, linha, (margem, y1, W - margem, y1 + 140),
-                           48, cor=PRETO, tamanho_minimo=30, espacamento=1.12)
+                           48, cor=PRETO, tamanho_minimo=30, espacamento=1.12, negrito=False)
 
         if estado == 'pergunta':
             texto_central(d, 'Pense e escolha: A, B ou C', (margem, 1685, W - margem, 1770),
@@ -161,7 +191,7 @@ def desenhar_base(indice, tema, numero, pergunta, estado='pergunta', contagem=No
                           (margem, 1665, W - margem, 1775), 34, cor=PRETO, tamanho_minimo=27)
 
     # Marca pequena apenas no canto inferior, conforme pedido.
-    d.text((margem, 1820), 'Juh Quiz', font=fonte(34), fill=PRETO)
+    d.text((margem, 1820), 'Juh Quiz', font=fonte(34, negrito=False), fill=PRETO)
     return img
 
 
@@ -308,7 +338,8 @@ def gerar(indice, tema, pergunta, out):
                            'resposta', work, resposta_audio, duracao(resposta_audio) + 0.4))
 
         comentario_audio = work / 'comentario.mp3'
-        asyncio.run(narrar('Comentário. ' + pergunta['explicacao'], comentario_audio))
+        # A página identifica visualmente a explicação; a voz começa direto no conteúdo.
+        asyncio.run(narrar(pergunta['explicacao'], comentario_audio))
         clips.append(clipe(desenhar_base(indice, tema, indice, pergunta, 'comentario'),
                            'comentario', work, comentario_audio, duracao(comentario_audio) + 1.3))
 
