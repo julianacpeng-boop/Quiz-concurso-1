@@ -1,0 +1,8 @@
+QUIZ-10 — ENFERMAGEM EBSERH
+
+15 questões autorais no estilo do concurso, uma por vídeo.
+Em cada vídeo: pergunta e alternativas narradas, contagem de 3 segundos, gabarito marcado e lido, e comentário explicativo também narrado.
+
+Visual da referência: amarelo, branco e turquesa, texto preto, Juh Quiz pequeno no canto inferior. Layout muda a cada três vídeos. Voz pt-BR-AntonioNeural, +10%.
+
+Configure o Secret RCLONE_DRIVE_TOKEN no repositório e execute o workflow pelo GitHub Actions. Para gerar o lote: início 1, quantidade 15.
